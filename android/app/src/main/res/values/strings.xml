@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">bebasMobile</string>
+    <string name="facebook_app_id">COPY_PASTE_YOUR_APP_ID_HERE</string>
 </resources>
