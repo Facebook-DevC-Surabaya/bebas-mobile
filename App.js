@@ -6,11 +6,16 @@
 
 import React, { Component } from 'react';
 import {
+  Button,
   Platform,
   StyleSheet,
   Text,
   View
 } from 'react-native';
+
+import {
+  AppEventsLogger
+} from 'react-native-fbsdk';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -20,6 +25,15 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component<{}> {
+
+  handleFoods = food => {
+    AppEventsLogger.logEvent('eventFoods', {
+      "food": food
+    })
+
+    alert(`You choose: ${food}`);
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -32,6 +46,25 @@ export default class App extends Component<{}> {
         <Text style={styles.instructions}>
           {instructions}
         </Text>
+
+        <Button
+          onPress={() => this.handleFoods('soto')}
+          title="Soto"
+        />
+
+        <View style={[styles.button]} />
+
+        <Button
+          onPress={() => this.handleFoods('bakso')}
+          title="Bakso"
+        />
+
+        <View style={[styles.button]} />
+
+        <Button
+          onPress={() => this.handleFoods('kroto')}
+          title="Kroto"
+        />
       </View>
     );
   }
@@ -54,4 +87,7 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  button: {
+    height: 20,
+  }
 });
